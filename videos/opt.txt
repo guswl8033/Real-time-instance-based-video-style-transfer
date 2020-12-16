@@ -1,0 +1,13 @@
+----------------- Options ---------------
+              content_dir: data/videos/content/mountain_2/
+                     cuda: True                          
+              decoder_dir: models/dec_r31.pth            
+                 fineSize: 512                           
+                    layer: r31                           
+                 loadSize: 512                           
+               matrix_dir: models/r31.pth                
+                     name: transferred_video             
+                     outf: videos                        
+                    style: data/style/in2.jpg            
+                  vgg_dir: models/vgg_r31.pth            
+----------------- End -------------------
