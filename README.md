@@ -9,7 +9,7 @@ The team worked on a project to convert texture in a desired image style by sele
 
 
 ### Test enviroment
-
+|---|---|
 |Cuda cimpiler driver|10.0|
 |Cuda Version|11.1|
 |Python|3.6.9|
