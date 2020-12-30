@@ -8,10 +8,12 @@ The team worked on a project to convert texture in a desired image style by sele
 ![flowchart](./flowchart.png)
 
 You have to download weights 
-1. from [YOLACT++](https://github.com/dbolya/yolact) and put the corresponding weights file in the `./weights` directory
+1. from [YOLACT](https://github.com/dbolya/yolact) and put the corresponding weights file in the `./weights` directory
 2. from [FlowNet2.0](https://github.com/NVIDIA/flownet2-pytorch) and put the corresponding weights file in the `./model` directory
 
 We use pretrained networks below
+
+[YOLACT](https://github.com/dbolya/yolact)
 ```
 @article{yolact-plus-tpami2020,
   author  = {Daniel Bolya and Chong Zhou and Fanyi Xiao and Yong Jae Lee},
@@ -20,6 +22,7 @@ We use pretrained networks below
   year    = {2020},
 }
 ```
+[Learning Linear Transformations for Fast Arbitrary Style Transfer](https://github.com/sunshineatnoon/LinearStyleTransfer)
 ```
 @inproceedings{li2018learning,
     author = {Li, Xueting and Liu, Sifei and Kautz, Jan and Yang, Ming-Hsuan},
@@ -28,6 +31,7 @@ We use pretrained networks below
     year = {2019}
 }
 ```
+[FlowNet2.0](https://github.com/NVIDIA/flownet2-pytorch)
 ```
 @misc{flownet2-pytorch,
   author = {Fitsum Reda and Robert Pottorff and Jon Barker and Bryan Catanzaro},
