@@ -26,7 +26,9 @@ python3 ARTists.py --trained_model=weights/yolact_base_54_800000.pth --score_thr
 
 ```
 
-We use pretrained networks below
+
+#### References
+We used pretrained networks below
 
 ```
 @article{yolact-plus-tpami2020,
