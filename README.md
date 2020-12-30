@@ -11,9 +11,17 @@ You have to download weights
 1. from [YOLACT](https://github.com/dbolya/yolact) and put the corresponding weights file in the `./weights` directory
 2. from [FlowNet2.0](https://github.com/NVIDIA/flownet2-pytorch) and put the corresponding weights file in the `./model` directory
 
+To test the code, type this after setting up the environment of below networks.
+
+[YOLACT](https://github.com/dbolya/yolact), [Learning Linear Transformations for Fast Arbitrary Style Transfer](https://github.com/sunshineatnoon/LinearStyleTransfer), [FlowNet2.0](https://github.com/NVIDIA/flownet2-pytorch)
+
+```
+python3 ARTists.py --trained_model=weights/yolact_base_54_800000.pth --score_threshold=0.15 --top_k=15 --video_multiframe=5 --video=0 --vgg_dir models/vgg_r31.pth --decoder_dir models/dec_r31.pth --matrixPath models/r31.pth --layer r31 --model FlowNet2S --resume model/FlowNet2-S_checkpoint.pth.tar --class_name person0 --style data/style/gogh.jpg 
+
+```
+
 We use pretrained networks below
 
-[YOLACT](https://github.com/dbolya/yolact)
 ```
 @article{yolact-plus-tpami2020,
   author  = {Daniel Bolya and Chong Zhou and Fanyi Xiao and Yong Jae Lee},
@@ -21,18 +29,14 @@ We use pretrained networks below
   title   = {YOLACT++: Better Real-time Instance Segmentation}, 
   year    = {2020},
 }
-```
-[Learning Linear Transformations for Fast Arbitrary Style Transfer](https://github.com/sunshineatnoon/LinearStyleTransfer)
-```
+
 @inproceedings{li2018learning,
     author = {Li, Xueting and Liu, Sifei and Kautz, Jan and Yang, Ming-Hsuan},
     title = {Learning Linear Transformations for Fast Arbitrary Style Transfer},
     booktitle = {IEEE Conference on Computer Vision and Pattern Recognition},
     year = {2019}
 }
-```
-[FlowNet2.0](https://github.com/NVIDIA/flownet2-pytorch)
-```
+
 @misc{flownet2-pytorch,
   author = {Fitsum Reda and Robert Pottorff and Jon Barker and Bryan Catanzaro},
   title = {flownet2-pytorch: Pytorch implementation of FlowNet 2.0: Evolution of Optical Flow Estimation with Deep Networks},
