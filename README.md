@@ -1,103 +1,27 @@
-# flownet2-pytorch 
+# 박물관을 넘어 도망친 화가들
 
-Pytorch implementation of [FlowNet 2.0: Evolution of Optical Flow Estimation with Deep Networks](https://arxiv.org/abs/1612.01925). 
+### 2020-2 전자공학종합설계 
+### 1675022 김현지, 1675037 송지언, 1772150 여화선
 
-Multiple GPU training is supported, and the code provides examples for training or inference on [MPI-Sintel](http://sintel.is.tue.mpg.de/) clean and final datasets. The same commands can be used for training or inference with other datasets. See below for more detail.
+The team worked on a project to convert texture in a desired image style by selecting the specific object from the video taken with a webcam. The final output is obtained by segmentation of the image and converting only the selected object into the desired texture like the masterpiece. In order to run the network in fast speed, the viewpoint of video processing was incorporated into existing studies. The optical flow was created by grouping several frames, and the first frame was instantiated and then the mask area image was set. After that, the mask area image was used as a new input to go through style transfer. The segmentation and style transfer of the remaining frames were predicted by using the optical flow between this first frame and each of the remaining frames, and then made into a video. The use of optical flow and style transfer of only the detected ROI area reduces the amount of network computation and enables real-time processing. This algorithm has proven that real-time processing is possible with results of up to 29.45fps. Such research can be used as an experience tool in museums and art galleries, and can be extended to the automotive industry in the future.
 
-Inference using fp16 (half-precision) is also supported.
-
-For more help, type <br />
-    
-    python main.py --help
-
-## Network architectures
-Below are the different flownet neural network architectures that are provided. <br />
-A batchnorm version for each network is also available.
-
- - **FlowNet2S**
- - **FlowNet2C**
- - **FlowNet2CS**
- - **FlowNet2CSS**
- - **FlowNet2SD**
- - **FlowNet2**
-
-## Custom layers
-
-`FlowNet2` or `FlowNet2C*` achitectures rely on custom layers `Resample2d` or `Correlation`. <br />
-A pytorch implementation of these layers with cuda kernels are available at [./networks](./networks). <br />
-Note : Currently, half precision kernels are not available for these layers.
-
-## Data Loaders
-
-Dataloaders for FlyingChairs, FlyingThings, ChairsSDHom and ImagesFromFolder are available in [datasets.py](./datasets.py). <br />
-
-## Loss Functions
-
-L1 and L2 losses with multi-scale support are available in [losses.py](./losses.py). <br />
-
-## Installation 
-
-    # get flownet2-pytorch source
-    git clone https://github.com/NVIDIA/flownet2-pytorch.git
-    cd flownet2-pytorch
-
-    # install custom layers
-    bash install.sh
-    
-### Python requirements 
-Currently, the code supports python 3
-* numpy 
-* PyTorch ( == 0.4.1, for <= 0.4.0 see branch [python36-PyTorch0.4](https://github.com/NVIDIA/flownet2-pytorch/tree/python36-PyTorch0.4))
-* scipy 
-* scikit-image
-* tensorboardX
-* colorama, tqdm, setproctitle 
-
-## Converted Caffe Pre-trained Models
-We've included caffe pre-trained models. Should you use these pre-trained weights, please adhere to the [license agreements](https://drive.google.com/file/d/1TVv0BnNFh3rpHZvD-easMb9jYrPE2Eqd/view?usp=sharing). 
-
-* [FlowNet2](https://drive.google.com/file/d/1hF8vS6YeHkx3j2pfCeQqqZGwA_PJq_Da/view?usp=sharing)[620MB]
-* [FlowNet2-C](https://drive.google.com/file/d/1BFT6b7KgKJC8rA59RmOVAXRM_S7aSfKE/view?usp=sharing)[149MB]
-* [FlowNet2-CS](https://drive.google.com/file/d/1iBJ1_o7PloaINpa8m7u_7TsLCX0Dt_jS/view?usp=sharing)[297MB]
-* [FlowNet2-CSS](https://drive.google.com/file/d/157zuzVf4YMN6ABAQgZc8rRmR5cgWzSu8/view?usp=sharing)[445MB]
-* [FlowNet2-CSS-ft-sd](https://drive.google.com/file/d/1R5xafCIzJCXc8ia4TGfC65irmTNiMg6u/view?usp=sharing)[445MB]
-* [FlowNet2-S](https://drive.google.com/file/d/1V61dZjFomwlynwlYklJHC-TLfdFom3Lg/view?usp=sharing)[148MB]
-* [FlowNet2-SD](https://drive.google.com/file/d/1QW03eyYG_vD-dT-Mx4wopYvtPu_msTKn/view?usp=sharing)[173MB]
-    
-## Inference
-    # Example on MPISintel Clean   
-    python main.py --inference --model FlowNet2 --save_flow --inference_dataset MpiSintelClean \
-    --inference_dataset_root /path/to/mpi-sintel/clean/dataset \
-    --resume /path/to/checkpoints 
-    
-## Training and validation
-
-    # Example on MPISintel Final and Clean, with L1Loss on FlowNet2 model
-    python main.py --batch_size 8 --model FlowNet2 --loss=L1Loss --optimizer=Adam --optimizer_lr=1e-4 \
-    --training_dataset MpiSintelFinal --training_dataset_root /path/to/mpi-sintel/final/dataset  \
-    --validation_dataset MpiSintelClean --validation_dataset_root /path/to/mpi-sintel/clean/dataset
-
-    # Example on MPISintel Final and Clean, with MultiScale loss on FlowNet2C model 
-    python main.py --batch_size 8 --model FlowNet2C --optimizer=Adam --optimizer_lr=1e-4 --loss=MultiScale --loss_norm=L1 \
-    --loss_numScales=5 --loss_startScale=4 --optimizer_lr=1e-4 --crop_size 384 512 \
-    --training_dataset FlyingChairs --training_dataset_root /path/to/flying-chairs/dataset  \
-    --validation_dataset MpiSintelClean --validation_dataset_root /path/to/mpi-sintel/clean/dataset
-    
-## Results on MPI-Sintel
-[![Predicted flows on MPI-Sintel](./image.png)](https://www.youtube.com/watch?v=HtBmabY8aeU "Predicted flows on MPI-Sintel")
-
-## Reference 
-If you find this implementation useful in your work, please acknowledge it appropriately and cite the paper:
-````
-@InProceedings{IMKDB17,
-  author       = "E. Ilg and N. Mayer and T. Saikia and M. Keuper and A. Dosovitskiy and T. Brox",
-  title        = "FlowNet 2.0: Evolution of Optical Flow Estimation with Deep Networks",
-  booktitle    = "IEEE Conference on Computer Vision and Pattern Recognition (CVPR)",
-  month        = "Jul",
-  year         = "2017",
-  url          = "http://lmb.informatik.uni-freiburg.de//Publications/2017/IMKDB17"
+We use pretrained networks below
+```
+@article{yolact-plus-tpami2020,
+  author  = {Daniel Bolya and Chong Zhou and Fanyi Xiao and Yong Jae Lee},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title   = {YOLACT++: Better Real-time Instance Segmentation}, 
+  year    = {2020},
 }
-````
+```
+```
+@inproceedings{li2018learning,
+    author = {Li, Xueting and Liu, Sifei and Kautz, Jan and Yang, Ming-Hsuan},
+    title = {Learning Linear Transformations for Fast Arbitrary Style Transfer},
+    booktitle = {IEEE Conference on Computer Vision and Pattern Recognition},
+    year = {2019}
+}
+```
 ```
 @misc{flownet2-pytorch,
   author = {Fitsum Reda and Robert Pottorff and Jon Barker and Bryan Catanzaro},
@@ -108,9 +32,3 @@ If you find this implementation useful in your work, please acknowledge it appro
   howpublished = {\url{https://github.com/NVIDIA/flownet2-pytorch}}
 }
 ```
-## Related Optical Flow Work from Nvidia 
-Code (in Caffe and Pytorch): [PWC-Net](https://github.com/NVlabs/PWC-Net) <br />
-Paper : [PWC-Net: CNNs for Optical Flow Using Pyramid, Warping, and Cost Volume](https://arxiv.org/abs/1709.02371). 
-
-## Acknowledgments
-Parts of this code were derived, as noted in the code, from [ClementPinard/FlowNetPytorch](https://github.com/ClementPinard/FlowNetPytorch).
