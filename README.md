@@ -7,6 +7,10 @@ The team worked on a project to convert texture in a desired image style by sele
 
 ![flowchart](./flowchart.png)
 
+You have to download weights 
+1. from [YOLACT++](https://github.com/dbolya/yolact) and put the corresponding weights file in the `./weights` directory
+2. from [FlowNet2.0](https://github.com/NVIDIA/flownet2-pytorch) and put the corresponding weights file in the `./model` directory
+
 We use pretrained networks below
 ```
 @article{yolact-plus-tpami2020,
