@@ -9,11 +9,12 @@ The team worked on a project to convert texture in a desired image style by sele
 
 
 ### Test enviroment
-Cuda cimpiler driver : 10.0
-Cuda Version : 11.1
-Python 3.6.9
-Pytorch : 1.1.0
-Torchvision : 0.3.0
+
+|Cuda cimpiler driver|10.0|
+|Cuda Version|11.1|
+|Python|3.6.9|
+|Pytorch|1.1.0|
+|Torchvision|0.3.0|
 
 To test the code, you have to set up the environment of below networks, and download weights.
 
