@@ -11,9 +11,15 @@ You have to download weights
 1. from [YOLACT](https://github.com/dbolya/yolact) and put the corresponding weights file in the `./weights` directory
 2. from [FlowNet2.0](https://github.com/NVIDIA/flownet2-pytorch) and put the corresponding weights file in the `./model` directory
 
-To test the code, type this after setting up the environment of below networks.
+To test the code, you have to set up the environment of below networks, and download weights.
 
+#### Set up the enviroment
 [YOLACT](https://github.com/dbolya/yolact), [Learning Linear Transformations for Fast Arbitrary Style Transfer](https://github.com/sunshineatnoon/LinearStyleTransfer), [FlowNet2.0](https://github.com/NVIDIA/flownet2-pytorch)
+
+#### Download Weights
+1. from [YOLACT](https://github.com/dbolya/yolact) and put the corresponding weights file in the `./weights` directory
+2. from [FlowNet2.0](https://github.com/NVIDIA/flownet2-pytorch) and put the corresponding weights file in the `./model` directory
+
 
 ```
 python3 ARTists.py --trained_model=weights/yolact_base_54_800000.pth --score_threshold=0.15 --top_k=15 --video_multiframe=5 --video=0 --vgg_dir models/vgg_r31.pth --decoder_dir models/dec_r31.pth --matrixPath models/r31.pth --layer r31 --model FlowNet2S --resume model/FlowNet2-S_checkpoint.pth.tar --class_name person0 --style data/style/gogh.jpg 
