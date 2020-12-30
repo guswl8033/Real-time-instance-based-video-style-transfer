@@ -13,10 +13,10 @@ You have to download weights
 
 To test the code, you have to set up the environment of below networks, and download weights.
 
-#### Set up the enviroment
+### Set up the enviroment
 [YOLACT](https://github.com/dbolya/yolact), [Learning Linear Transformations for Fast Arbitrary Style Transfer](https://github.com/sunshineatnoon/LinearStyleTransfer), [FlowNet2.0](https://github.com/NVIDIA/flownet2-pytorch)
 
-#### Download Weights
+### Download Weights
 1. from [YOLACT](https://github.com/dbolya/yolact) and put the corresponding weights file in the `./weights` directory
 2. from [FlowNet2.0](https://github.com/NVIDIA/flownet2-pytorch) and put the corresponding weights file in the `./model` directory
 
@@ -27,7 +27,7 @@ python3 ARTists.py --trained_model=weights/yolact_base_54_800000.pth --score_thr
 ```
 
 
-#### References
+### References
 We used pretrained networks below
 
 ```
